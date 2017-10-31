@@ -19,13 +19,13 @@ var getAndWriteData = function() {
     // Make request to the Particle API to get sensor values
     request(device_url, function(error, response, body) {
         // Store sensor values in variables
-        console.log(body);
+        //console.log(body);
         var device_json_string = JSON.parse(body).result;
         var accX = JSON.parse(device_json_string).x;
         var accY = JSON.parse(device_json_string).y;
         var accZ = JSON.parse(device_json_string).z;
         
-        console.log(accX);
+        console.log("X:" + accX + "Y:" + accY + "Z:" + accZ);
 
         // Connect to the AWS RDS Postgres database
         const client = new Client(db_credentials);
@@ -43,5 +43,5 @@ var getAndWriteData = function() {
     });
 };
 
-// write a new row of sensor data every five minutes
+// write a new row of sensor data every 30 seconds
 setInterval(getAndWriteData, 30000);
