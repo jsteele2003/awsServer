@@ -1,0 +1,24 @@
+{
+  "name": "ecserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dbWrite.js",
+  "dependencies": {
+    "pm2": "^2.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./node_modules/.bin/pm2 start app.js -i max --attach"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsteele2003/awsServer.git"
+  },
+  "author": "jsteele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsteele2003/awsServer/issues"
+  },
+  "homepage": "https://github.com/jsteele2003/awsServer#readme"
+}
