@@ -20,7 +20,6 @@ app.get('/', function(req, res) {
              AVG(acc_x) as avg_x,
              AVG(acc_y) as avg_y,
              AVG(acc_z) as avg_z,
-             AVG(temp) as avg_temp,
              FROM sensordata;`;
              
     client.connect();
