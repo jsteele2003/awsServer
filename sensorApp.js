@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
              count(*) as num_obs, 
              AVG(acc_x) as avg_x,
              AVG(acc_y) as avg_y,
-             AVG(acc_z) as avg_z,
+             AVG(acc_z) as avg_z
              FROM sensordata;`;
              
     client.connect();

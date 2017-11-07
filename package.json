@@ -9,7 +9,6 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    "start": "node ./node_modules/.bin/pm2 start app.js -i max --attach"
   },
   "repository": {
     "type": "git",
