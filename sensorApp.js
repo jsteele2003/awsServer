@@ -24,9 +24,9 @@ app.get('/', function(req, res) {
              
     client.connect();
     client.query(q, (qerr, qres) => {
-        res.send(qres.rows);
         console.log(qres);
         console.log(qerr);
+        res.send(qres.rows);
         console.log('responded to request');
     });
     client.end();
