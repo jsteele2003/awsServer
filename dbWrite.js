@@ -21,17 +21,15 @@ var getAndWriteData = function() {
         // Store sensor values in variables
         console.log(body);
         var device_json_string = JSON.parse(body).result;
-        var accX = JSON.parse(device_json_string).x;
-        var accY = JSON.parse(device_json_string).y;
-        var accZ = JSON.parse(device_json_string).z;
+        var temp = JSON.parse(device_json_string).temp;
+        var light = JSON.parse(device_json_string).light;
         
-        console.log("X:" + accX + "Y:" + accY + "Z:" + accZ);
 
         const client = new Client(db_credentials);
         client.connect();
 
         //in the process of swapping out sensors, this is what is currently publishing from the photon but will change this week
-        var thisQuery = "INSERT INTO sensorData VALUES (" + accX + "," + accY + "," + accZ + ", DEFAULT);";
+        var thisQuery = "INSERT INTO sensorData VALUES (" + temp + "," + light + ", DEFAULT);";
         console.log(thisQuery); // for debugging
 
         // Connect to the AWS RDS Postgres database and insert a new row of sensor values
