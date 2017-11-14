@@ -4,7 +4,7 @@ const { Client } = require('pg');
 // PARTICLE PHOTON
 var device_id = process.env.PHOTON_ID;
 var access_token = process.env.PHOTON_TOKEN;
-var particle_variable = 'Json';
+var particle_variable = 'json';
 var device_url = 'https://api.particle.io/v1/devices/' + device_id + '/' + particle_variable + '?access_token=' + access_token;
 
 // AWS RDS POSTGRESQL INSTANCE
@@ -14,6 +14,7 @@ db_credentials.host = process.env.AWSRDS_EP;
 db_credentials.database = 'sensordb';
 db_credentials.password = process.env.AWSRDS_PW;
 db_credentials.port = 5432;
+console.log(device_url);
 
 var getAndWriteData = function() {
     // Make request to the Particle API to get sensor values
