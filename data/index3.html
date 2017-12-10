@@ -1,0 +1,83 @@
+;
+<script>
+        function makeContent(content) {
+            var contentHolder = '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>';
+            for (var i = 0; i < content.meetingGroups.length; i++) {
+            if (i == 0) {
+                contentHolder = contentHolder + '<h2>' + content.groups[i].address.substr(0, content.groups[i].address.indexOf(',')) + '</h2>';
+            } 
+                contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
+                contentHolder = contentHolder + content.groups[i].group + '</h1>';
+                
+                for (var j = 0; j < content.groups[i].type.length; j++) {
+                    var type;
+                    if (content.meetingGroups[i].meetingType[j] == "BB") {
+                        type = "Big Book ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "B") {
+                        type = "Beginners ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "C") {
+                        type = "Closed Discussion ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "S") {
+                        type = "Step ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "T") {
+                        type = "Tradition ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "O") {
+                        type = "Open Meeting ";
+                    }
+                    else if (content.meetingGroups[i].meetingType[j] == "OD") {
+                        type = "Open Discussion ";
+                    }
+                    else {
+                        type = "";
+                    }
+
+                    contentHolder = contentHolder + content.meetingGroups[i].meetingStartTime[j] + ' ' + type + '<br>';
+                }
+                contentHolder = contentHolder + '</p>';
+                contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
+            }
+            return contentHolder;
+        }
+
+        function setMarkers(map, locations) {
+            // Add markers to the map
+            var infowindow = new google.maps.InfoWindow({
+                maxWidth: 200
+            });
+
+            for (var i = 0; i < locations.length; i++) {
+                var meeting = locations[i];
+                var myLatLng = new google.maps.LatLng(meeting._id.latLong[0], meeting._id.latLong[1]);
+
+                var contentWindow = makeContent(meetings[i]);
+
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: "Click for meeting info",
+                    content: contentWindow,
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(this.content);
+                    infowindow.open(map, this);
+                });
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+    <div id="map-canvas"></div>
+</body>
+
+</html>
