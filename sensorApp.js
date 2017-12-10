@@ -96,7 +96,6 @@ app.get('/aa', function(req, res) {
     });
     
 });
-console.log(process.env.IP);
-app.listen(process.env.PORT, process.env.IP, function() {
+app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
     console.log('Server listening...');
 });
