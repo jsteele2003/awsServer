@@ -54,11 +54,8 @@
             });
 
             for (var i = 0; i < locations.length; i++) {
-                if(i == 0){
-                console.log(locations[i])}
                 var location = locations[i];
                 var myLatLng = new google.maps.LatLng(location._id.latLong[0], location._id.latLong[1]);
-
                 var contentWindow = makeContent(locations[i]);
 
                 var marker = new google.maps.Marker({
@@ -67,6 +64,11 @@
                     title: "Click for meeting info",
                     content: contentWindow,
                 });
+                if(i == 0){
+                    console.log(locations[i]);
+                    console.log(marker);
+                    console.log(myLatLng);
+                }
 
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(this.content);
