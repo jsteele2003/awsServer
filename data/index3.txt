@@ -56,7 +56,7 @@
             for (var i = 0; i < locations.length; i++) {
                 var location = locations[i];
                 var myLat = location._id.latLong['lat'];
-                var myLong = location._id.latLong['long']);
+                var myLong = location._id.latLong['lng'];
                 var contentWindow = makeContent(locations[i]);
 
                 var marker = new google.maps.Marker({
