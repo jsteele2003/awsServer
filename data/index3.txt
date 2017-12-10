@@ -54,6 +54,8 @@
             });
 
             for (var i = 0; i < locations.length; i++) {
+                if(i == 0){
+                console.log(locations[i])}
                 var location = locations[i];
                 var myLatLng = new google.maps.LatLng(location._id.latLong[0], location._id.latLong[1]);
 
