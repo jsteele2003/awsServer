@@ -41,7 +41,9 @@ app.get('/', function(req, res) {
 app.get('/aa', function(req, res) {
 
     MongoClient.connect(url, function(err, db) {
-        if (err) {return console.dir(err);}
+        if (err) {
+            console.log(err);
+            return console.dir(err);}
         assert.equal(null, err);
         console.log("Connected successfully to server");
     
