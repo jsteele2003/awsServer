@@ -13,7 +13,7 @@ db_credentials.port = 5432;
 
 // Mongo
 var collName = 'meetings';
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb-org').MongoClient;
 var url = process.env.cluster;
 
 var map1 = fs.readFileSync("./data/index1.txt");
@@ -31,6 +31,7 @@ app.get('/', function(req, res) {
              
     client.connect();
     client.query(q, (qerr, qres) => {
+        console.log(qerr);
         res.send(qres.rows);
         console.log('responded to request');
     });
@@ -40,7 +41,7 @@ app.get('/', function(req, res) {
 app.get('/aa', function(req, res) {
 
     MongoClient.connect(url, function(err, db) {
-        if (err) {return console.dir(err);}
+        // if (err) {return console.dir(err);}
         
         var dateTimeNow = new Date();
         console.log(db);
@@ -91,6 +92,6 @@ app.get('/aa', function(req, res) {
     
 });
 console.log(process.env.PORT);
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
+app.listen(process.env.PORT, process.env.IP || "0.0.0.0", function() {
     console.log('Server listening...');
 });
