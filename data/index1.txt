@@ -21,13 +21,13 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVpJiKOxvVbqh0YYbhBbf_HvBhM995xJU&v=3.exp&signed_in=true"></script>
     <script>
-        var latNow = 40.736354;
-        var longNow = -73.999175;
+        var latNow = 40.730610;
+        var longNow = -73.935242;
 
 
         function initialize() {
             var mapOptions = {
-                zoom: 16,
+                zoom: 14,
                 center: new google.maps.LatLng(latNow, longNow)
             }
             var map = new google.maps.Map(document.getElementById('map-canvas'),

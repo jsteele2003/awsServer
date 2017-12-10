@@ -5,7 +5,7 @@
                 '<div id="siteNotice">' +
                 '</div>';
             contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
-            contentHolder = contentHolder + '<h3>' + "wheelchairAccess" + location._id.wheelchairAccess + '</h3>';
+            contentHolder = contentHolder + '<h3>' + "Wheelchair Access: " + location._id.wheelchairAccess + '</h3>';
             for (var i = 0; i < location.groups.length; i++) {
             if (i == 0) {
             } 
