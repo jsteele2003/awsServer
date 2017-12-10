@@ -13,7 +13,7 @@ db_credentials.port = 5432;
 
 // Mongo
 var collName = 'meetings';
-// var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 var url = process.env.cluster;
 
 var map1 = fs.readFileSync("./data/index1.txt");
