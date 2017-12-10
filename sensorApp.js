@@ -26,14 +26,11 @@ app.get('/', function(req, res) {
     // SQL query
     var q = `SELECT
              count(*) as num_obs, 
-             AVG(acc_x) as avg_x,
-             AVG(acc_y) as avg_y,
-             AVG(acc_z) as avg_z
+             AVG(temp) as temp
              FROM sensordata;`;
              
     client.connect();
     client.query(q, (qerr, qres) => {
-        console.log(res);
         res.send(qres.rows);
         console.log('responded to request');
     });
