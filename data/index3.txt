@@ -5,6 +5,7 @@
                 '<div id="siteNotice">' +
                 '</div>';
             contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
+            contentHolder = contentHolder + '<h3>' + "wheelchairAccess" + location._id.wheelchairAccess + '</h3>';
             for (var i = 0; i < location.groups.length; i++) {
             if (i == 0) {
             } 
@@ -55,8 +56,6 @@
 
             for (var i = 0; i < locations.length; i++) {
                 var location = locations[i];
-                var myLat = location._id.latLong['lat'];
-                var myLong = location._id.latLong['lng'];
                 var myLatLng = new google.maps.LatLng(location._id.latLong["lat"], location._id.latLong["lng"]);
                 var contentWindow = makeContent(locations[i]);
 
@@ -66,11 +65,6 @@
                     title: "Click for meeting info",
                     content: contentWindow,
                 });
-                if(i == 0){
-                    console.log(locations[i]);
-                    console.log(marker);
-                    console.log(myLatLng);
-                }
 
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(this.content);
