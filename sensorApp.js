@@ -1,5 +1,5 @@
 var express = require('express'),
-app = express();
+app = express(), assert = require('assert');
 const { Pool } = require('pg');
 var fs = require('fs');
 
@@ -13,7 +13,7 @@ db_credentials.port = 5432;
 
 // Mongo
 var collName = 'meetings';
-var MongoClient = require('mongodb-org').MongoClient;
+var MongoClient = require('mongodb').MongoClient;
 var url = process.env.cluster;
 
 var map1 = fs.readFileSync("./data/index1.txt");
@@ -41,8 +41,10 @@ app.get('/', function(req, res) {
 app.get('/aa', function(req, res) {
 
     MongoClient.connect(url, function(err, db) {
-        // if (err) {return console.dir(err);}
-        
+        if (err) {return console.dir(err);}
+        assert.equal(null, err);
+        console.log("Connected successfully to server");
+    
         var dateTimeNow = new Date();
         console.log(db);
         var today = dateTimeNow.getDay();
