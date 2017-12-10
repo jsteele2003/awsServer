@@ -38,7 +38,7 @@
                         type = "";
                     }
 
-                    contentHolder = contentHolder + location.groups[i].time[j] + ' ' + type + '<br>';
+                    contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
                 }
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
