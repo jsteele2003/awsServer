@@ -59,7 +59,7 @@
                 var contentWindow = makeContent(locations[i]);
 
                 var marker = new google.maps.Marker({
-                    position: myLatLng,
+                    position: {location._id.latLong['lat'], location._id.latLong['long']},
                     map: map,
                     title: "Click for meeting info",
                     content: contentWindow,
