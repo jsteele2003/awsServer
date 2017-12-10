@@ -16,8 +16,8 @@ var collName = 'meetings';
 // var MongoClient = require('mongodb').MongoClient;
 var url = process.env.cluster;
 
-var map1 = fs.readFileSync("./data/index1.html");
-var map3 = fs.readFileSync("./data/index3.html");
+var map1 = fs.readFileSync("./data/index1.txt");
+var map3 = fs.readFileSync("./data/index3.txt");
 
 app.get('/', function(req, res) {
     // Connect to the AWS RDS Postgres database

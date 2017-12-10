@@ -1,12 +1,12 @@
 ;
-<script>
+
         function makeContent(location) {
             var contentHolder = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>';
+            contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
             for (var i = 0; i < location.groups.length; i++) {
             if (i == 0) {
-                contentHolder = contentHolder + '<h2>' + location.groups[i].address.substr(0, location.groups[i].address.indexOf(',')) + '</h2>';
             } 
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
                 contentHolder = contentHolder + location.groups[i].group + '</h1>';
