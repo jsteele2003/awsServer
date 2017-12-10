@@ -53,42 +53,29 @@ app.get('/aa', function(req, res) {
     
         collection.aggregate([ // start of aggregation pipeline
             // match by day and time
-            { $match : 
-                { $or : [
-                    { $and: [
-                        { dayQuery : 2 } , { hourQuery : { $gte: 19 } }
-                    ]},
-                    { $and: [
-                        { dayQuery : 3 } , { hourQuery : { $lte: 4 } }
-                    ]}
-                ]}
-            },
-            
-            // group by meeting group
-            { $group : { _id : {
-                latLong : "$latLong",
-                meetingName : "$meetingName",
-                meetingAddress1 : "$meetingAddress1",
-                meetingAddress2 : "$meetingAddress2",
-                borough : "$borough",
-                meetingDetails : "$meetingDetails",
-                meetingWheelchair : "$meetingWheelchair",
-                },
-                    meetingDay : { $push : "$day" },
-                    meetingStartTime : { $push : "$startTime" }, 
-                    meetingType : { $push : "$meetingType" }
-            }
-            },
-            
-            // group meeting groups by latLong
-            {
-                $group : { _id : { 
-                    latLong : "$_id.latLong"},
-                    meetingGroups : { $push : {groupInfo : "$_id", meetingDay : "$meetingDay", meetingStartTime : "$meetingStartTime", meetingType : "$meetingType" }}
-                }
-            }
-        
-            ]).toArray(function(err, docs) { // end of aggregation pipeline
+            {  $group : { _id :{
+                          address : "$address",
+                          latLong : "$latLong",
+                          meetingName : "$meetingName",
+                          meetingDetails : "$meetingDetails",
+                          wheelchairAccess : "$wheelchairAccess"
+                        },
+                        day : { $push : "$day" },
+                        time : { $push : "$time" }, 
+                        type : { $push : "$meetingType" }
+                  }
+                 },
+                 { $group : { _id :{
+                    address : "$_id.address",
+                    latLong : '$_id.latLong',
+                     wheelchairAccess : '$_id.wheelchairAccess'
+                 },
+                    groups : {
+                        $push : { group: "$_id.meetingName", day : "$day", time : "$time", type : '$type'},
+                    }
+                 }
+                 },
+                  ]).toArray(function(err, docs) { // end of aggregation pipeline
             if (err) {console.log(err)}
             
             else {

@@ -1,44 +1,44 @@
 ;
 <script>
-        function makeContent(content) {
+        function makeContent(location) {
             var contentHolder = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>';
-            for (var i = 0; i < content.meetingGroups.length; i++) {
+            for (var i = 0; i < location.groups.length; i++) {
             if (i == 0) {
-                contentHolder = contentHolder + '<h2>' + content.groups[i].address.substr(0, content.groups[i].address.indexOf(',')) + '</h2>';
+                contentHolder = contentHolder + '<h2>' + location.groups[i].address.substr(0, location.groups[i].address.indexOf(',')) + '</h2>';
             } 
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
-                contentHolder = contentHolder + content.groups[i].group + '</h1>';
+                contentHolder = contentHolder + location.groups[i].group + '</h1>';
                 
-                for (var j = 0; j < content.groups[i].type.length; j++) {
+                for (var j = 0; j < location.groups[i].type.length; j++) {
                     var type;
-                    if (content.meetingGroups[i].meetingType[j] == "BB") {
+                    if (location.groups[i].type[j] == "BB") {
                         type = "Big Book ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "B") {
+                    else if (location.meetingGroups[i].meetingType[j] == "B") {
                         type = "Beginners ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "C") {
+                    else if (location.meetingGroups[i].meetingType[j] == "C") {
                         type = "Closed Discussion ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "S") {
+                    else if (location.meetingGroups[i].meetingType[j] == "S") {
                         type = "Step ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "T") {
+                    else if (location.meetingGroups[i].meetingType[j] == "T") {
                         type = "Tradition ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "O") {
+                    else if (location.meetingGroups[i].meetingType[j] == "O") {
                         type = "Open Meeting ";
                     }
-                    else if (content.meetingGroups[i].meetingType[j] == "OD") {
+                    else if (location.meetingGroups[i].meetingType[j] == "OD") {
                         type = "Open Discussion ";
                     }
                     else {
                         type = "";
                     }
 
-                    contentHolder = contentHolder + content.meetingGroups[i].meetingStartTime[j] + ' ' + type + '<br>';
+                    contentHolder = contentHolder + location.groups[i].time[j] + ' ' + type + '<br>';
                 }
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
@@ -53,10 +53,10 @@
             });
 
             for (var i = 0; i < locations.length; i++) {
-                var meeting = locations[i];
-                var myLatLng = new google.maps.LatLng(meeting._id.latLong[0], meeting._id.latLong[1]);
+                var location = locations[i];
+                var myLatLng = new google.maps.LatLng(location._id.latLong[0], location._id.latLong[1]);
 
-                var contentWindow = makeContent(meetings[i]);
+                var contentWindow = makeContent(locations[i]);
 
 
                 var marker = new google.maps.Marker({
