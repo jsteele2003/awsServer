@@ -43,6 +43,7 @@ app.get('/aa', function(req, res) {
         if (err) {return console.dir(err);}
         
         var dateTimeNow = new Date();
+        console.log(db);
         var today = dateTimeNow.getDay();
         var tomorrow;
         if (today == 6) {tomorrow = 0;}
