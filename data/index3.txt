@@ -16,22 +16,22 @@
                     if (location.groups[i].type[j] == "BB") {
                         type = "Big Book ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "B") {
+                    else if (location.groups[i].type[j] == "B") {
                         type = "Beginners ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "C") {
+                    else if (location.groups[i].type[j] == "C") {
                         type = "Closed Discussion ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "S") {
+                    else if (location.groups[i].type[j] == "S") {
                         type = "Step ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "T") {
+                    else if (location.groups[i].type[j] == "T") {
                         type = "Tradition ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "O") {
+                    else if (location.groups[i].type[j] == "O") {
                         type = "Open Meeting ";
                     }
-                    else if (location.meetingGroups[i].meetingType[j] == "OD") {
+                    else if (location.groups[i].type[j] == "OD") {
                         type = "Open Discussion ";
                     }
                     else {
@@ -57,7 +57,6 @@
                 var myLatLng = new google.maps.LatLng(location._id.latLong[0], location._id.latLong[1]);
 
                 var contentWindow = makeContent(locations[i]);
-
 
                 var marker = new google.maps.Marker({
                     position: myLatLng,

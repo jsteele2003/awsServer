@@ -15,6 +15,7 @@ db_credentials.port = 5432;
 var collName = 'meetings';
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.cluster;
+console.log(url);
 
 var map1 = fs.readFileSync("./data/index1.txt");
 var map3 = fs.readFileSync("./data/index3.txt");
@@ -31,7 +32,6 @@ app.get('/', function(req, res) {
              
     client.connect();
     client.query(q, (qerr, qres) => {
-        console.log(qerr);
         res.send(qres.rows);
         console.log('responded to request');
     });
@@ -39,16 +39,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/aa', function(req, res) {
-
-    MongoClient.connect(url, function(err, db) {
+    console.log('reached get');
+    MongoClient.connect(url, function(err, database) {
         if (err) {
-            console.log(err);
             return console.dir(err);}
         assert.equal(null, err);
         console.log("Connected successfully to server");
+        const db = database.db('joe');
+        console.log(collName);
     
         var dateTimeNow = new Date();
-        console.log(db);
         var today = dateTimeNow.getDay();
         var tomorrow;
         if (today == 6) {tomorrow = 0;}
@@ -56,6 +56,7 @@ app.get('/aa', function(req, res) {
         var hour = dateTimeNow.getHours();
 
         var collection = db.collection(collName);
+        console.log(collection);
     
         collection.aggregate([ // start of aggregation pipeline
             // match by day and time
@@ -90,12 +91,12 @@ app.get('/aa', function(req, res) {
                 res.write(JSON.stringify(docs));
                 res.end(map3);
             }
-            db.close();
+            database.close();
         });
     });
     
 });
-console.log(process.env.PORT);
-app.listen(process.env.PORT, process.env.IP || "0.0.0.0", function() {
+console.log(process.env.IP);
+app.listen(process.env.PORT, process.env.IP, function() {
     console.log('Server listening...');
 });
