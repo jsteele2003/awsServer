@@ -7,7 +7,13 @@
             contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
             for (var i = 0; i < location.groups.length; i++) {
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
-                contentHolder = contentHolder + location.groups[i].group + '</h1>';
+                contentHolder = contentHolder + location.groups[i].group;
+                if(location.groups[i].meetingDetails){
+                    contentHolder = contentHolder + " : " + location.groups[i].meetingDetails + "</h1>";
+                } else {
+                    countentHolder = contentHolder + "</h1>";
+                }
+                
                 var dayArray = [];
                 var meetingDays = {}
                 
@@ -60,7 +66,6 @@
         }
 
         function setMarkers(map, locations) {
-            // Add markers to the map
             var infowindow = new google.maps.InfoWindow({
                 maxWidth: 200
             });

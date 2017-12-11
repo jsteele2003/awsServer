@@ -86,10 +86,10 @@ app.get('/aa', function(req, res) {
                  { $group : { _id :{
                     address : "$_id.address",
                     latLong : '$_id.latLong',
-                     wheelchairAccess : '$_id.wheelchairAccess'
+                    wheelchairAccess : '$_id.wheelchairAccess'
                  },
                     groups : {
-                        $push : { group: "$_id.meetingName", day : "$day", time : "$time", type : '$type'},
+                        $push : { group: "$_id.meetingName", meetingDetails : "$_id.meetingDetails", day : "$day", time : "$time", type : '$type'},
                     }
                  }
                  },
