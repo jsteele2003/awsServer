@@ -41,7 +41,7 @@
                     else {
                         type = "";
                     }
-                    if(!dayArray.includes(day){
+                    if(!dayArray.includes(day)){
                         contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
                         dayArray.push(day);
                     } else{
