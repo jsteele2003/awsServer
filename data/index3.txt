@@ -11,9 +11,12 @@
             } 
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
                 contentHolder = contentHolder + location.groups[i].group + '</h1>';
+                var dayArray = [];
                 
                 for (var j = 0; j < location.groups[i].type.length; j++) {
                     var type;
+                    var day = location.groups[i].day[j];
+    
                     if (location.groups[i].type[j] == "BB") {
                         type = "Big Book ";
                     }
@@ -38,8 +41,11 @@
                     else {
                         type = "";
                     }
-
-                    contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
+                    if(!dayArray.includes(day){
+                        contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
+                        dayArray.push(day);
+                    } else{
+                        contentHolder = contentHolder + location.groups[i].time[j] + ' ' + type + '<br>';}
                 }
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
