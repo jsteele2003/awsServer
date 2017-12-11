@@ -25,8 +25,9 @@ app.get('/', function(req, res) {
     const client = new Pool(db_credentials);
 
     // SQL query
-    var q = `SELECT EXTRACT(DOW FROM time AT TIME ZONE 'America/New_York') as sensorday, 
+    var q = `SELECT TRUNC(EXTRACT(MINUTE FROM time AT TIME ZONE 'America/New_York')/30) as sensorhalfhour,
              EXTRACT(HOUR FROM time AT TIME ZONE 'America/New_York') as sensorhour, 
+             EXTRACT(DOW FROM time AT TIME ZONE 'America/New_York') as sensorday, 
              EXTRACT(WEEK FROM time AT TIME ZONE 'America/New_York') as sensorweek, 
              count(*) as num_obs, 
              max(light) as max_light, 
@@ -34,7 +35,7 @@ app.get('/', function(req, res) {
              max(temp) as max_temp, 
              avg(temp) as avg_temp
              FROM sensordata 
-             GROUP BY sensorweek, sensorday, sensorhour;`;
+             GROUP BY sensorweek, sensorday, sensorhour, sensorhalfhour;`;
              
     client.connect();
     client.query(q, (qerr, qres) => {
