@@ -21,8 +21,8 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVpJiKOxvVbqh0YYbhBbf_HvBhM995xJU&v=3.exp&signed_in=true"></script>
     <script>
-        var latNow = 40.730610;
-        var longNow = -73.935242;
+        var latNow = 40.7831;
+        var longNow = -73.9712;
 
 
         function initialize() {

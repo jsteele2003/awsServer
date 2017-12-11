@@ -5,7 +5,6 @@
                 '<div id="siteNotice">' +
                 '</div>';
             contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
-            contentHolder = contentHolder + '<h3>' + "Wheelchair Access: " + location._id.wheelchairAccess + '</h3>';
             for (var i = 0; i < location.groups.length; i++) {
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
                 contentHolder = contentHolder + location.groups[i].group + '</h1>';
@@ -40,7 +39,6 @@
                     else {
                         type = "";
                     }
-                    //contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
                     if(!dayArray.includes(day)){
                         meetingDays[day] = "<h4>" + location.groups[i].day[j] + "</h4>" + location.groups[i].time[j] + " " + type;
                         dayArray.push(day);
@@ -48,19 +46,18 @@
                         meetingDays[day] += "," + '<br>' + location.groups[i].time[j] + ' ' + type;
                         }
                 }
-                console.log(meetingDays);
                 for (var dayKey in meetingDays){
                     contentHolder = contentHolder + meetingDays[dayKey] + '<br>';;
                 }
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
             }
+            contentHolder = contentHolder + '<h3>' + "Wheelchair Access: " + location._id.wheelchairAccess + '</h3>';
             return contentHolder;
         }
 
         function setMarkers(map, locations) {
             // Add markers to the map
-            console.log(locations.length)
             var infowindow = new google.maps.InfoWindow({
                 maxWidth: 200
             });

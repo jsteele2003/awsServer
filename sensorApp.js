@@ -25,15 +25,25 @@ app.get('/', function(req, res) {
     const client = new Pool(db_credentials);
 
     // SQL query
-    var q = `SELECT
+    var q = `SELECT EXTRACT(DOW FROM time AT TIME ZONE 'America/New_York') as sensorday, 
+             EXTRACT(HOUR FROM time AT TIME ZONE 'America/New_York') as sensorhour, 
+             EXTRACT(WEEK FROM time AT TIME ZONE 'America/New_York') as sensorweek, 
              count(*) as num_obs, 
-             AVG(temp) as temp
-             FROM sensordata;`;
+             max(light) as max_light, 
+             avg(light) as avg_light,
+             max(temp) as max_temp, 
+             avg(temp) as avg_temp
+             FROM sensordata 
+             GROUP BY sensorweek, sensorday, sensorhour;`;
              
     client.connect();
     client.query(q, (qerr, qres) => {
+        if(qerr){
+        console.log(qerr);
+        }else{
         res.send(qres.rows);
         console.log('responded to request');
+        }
     });
     client.end();
 });
