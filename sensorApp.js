@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
     var q = `SELECT TRUNC(EXTRACT(MINUTE FROM time AT TIME ZONE 'America/New_York')/30) as sensorhalfhour,
              EXTRACT(HOUR FROM time AT TIME ZONE 'America/New_York') as sensorhour, 
              EXTRACT(DOW FROM time AT TIME ZONE 'America/New_York') as sensorday, 
-             EXTRACT(WEEK FROM time AT TIME ZONE 'America/New_York') as sensorweek, 
+             (EXTRACT(WEEK FROM time AT TIME ZONE 'America/New_York') :: INTEGER % 45) as sensorweek, 
              count(*) as num_obs, 
              max(light) as max_light, 
              avg(light) as avg_light,
