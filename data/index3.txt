@@ -45,7 +45,7 @@
                         contentHolder = contentHolder + location.groups[i].day[j] + " : " + location.groups[i].time[j] + ' ' + type + '<br>';
                         dayArray.push(day);
                     } else{
-                        contentHolder = contentHolder + location.groups[i].time[j] + ' ' + type + '<br>';}
+                        contentHolder = contentHolder + '<br>' + location.groups[i].time[j] + ' ' + type + '<br>';}
                 }
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
