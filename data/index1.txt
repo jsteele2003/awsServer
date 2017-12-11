@@ -19,21 +19,17 @@
             font-size: 100%;
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVpJiKOxvVbqh0YYbhBbf_HvBhM995xJU"></script>
     <script>
-        var latNow = 40.7831;
-        var longNow = -73.9712;
-
-
-        function initialize() {
-            var mapOptions = {
-                zoom: 14,
-                center: new google.maps.LatLng(latNow, longNow)
+            function initialize() {
+                var mapOptions = {
+                    zoom: 14,
+                    center: new google.maps.LatLng(40.7831, -73.9712)
+                }
+                var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+    
+                setMarkers(map, locations);
             }
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
 
-            setMarkers(map, locations);
-        }
 
         var locations =   

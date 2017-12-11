@@ -83,8 +83,8 @@
                 });
             }
         }
-        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVpJiKOxvVbqh0YYbhBbf_HvBhM995xJU&callback=initialize" async defer></script>
 </head>
 
 <body>
