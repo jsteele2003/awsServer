@@ -11,8 +11,8 @@
                 var dayArray = [];
                 var meetingDays = {}
                 
-                for (var j = 0; j < location.groups[i].type.length; j++) {
-                    var type;
+                for (var j = 0; j < location.groups[i].day.length; j++) {
+                    var type = "";
                     var day = location.groups[i].day[j];
     
                     if (location.groups[i].type[j] == "BB") {
@@ -52,7 +52,10 @@
                 contentHolder = contentHolder + '</p>';
                 contentHolder = contentHolder + '<div class="iw-bottom-gradient"></div>';
             }
-            contentHolder = contentHolder + '<h3>' + "Wheelchair Access: " + location._id.wheelchairAccess + '</h3>';
+            
+            if(location._id.wheelchairAccess){
+                contentHolder = contentHolder + '<h3>' + "Wheelchair Access " + '</h3>';
+            }
             return contentHolder;
         }
 
