@@ -54,7 +54,7 @@
             }
             
             if(location._id.wheelchairAccess){
-                contentHolder = contentHolder + '<h3>' + "Wheelchair Access " + '</h3>';
+                contentHolder = contentHolder + '<h3>' + "Wheelchair Accessible " + '</h3>';
             }
             return contentHolder;
         }
