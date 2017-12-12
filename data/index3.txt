@@ -50,7 +50,7 @@
                        type = type + "(" + specialInterest.substr(specialInterest.indexOf('-') + 2, specialInterest.length -1 ) + ")"; 
                     }
                     if(!dayArray.includes(day)){
-                        meetingDays[day] = "<h4>" + location.groups[i].day[j] + "</h4>" + location.groups[i].time[j] + " " + type;
+                        meetingDays[day] = "<h5>" + location.groups[i].day[j] + "</h5>" + location.groups[i].time[j] + " " + type;
                         dayArray.push(day);
                     } else{
                         meetingDays[day] += "," + '<br>' + location.groups[i].time[j] + ' ' + type;
