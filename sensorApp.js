@@ -80,16 +80,17 @@ app.get('/aa', function(req, res) {
                         },
                         day : { $push : "$day" },
                         time : { $push : "$time" }, 
-                        type : { $push : "$meetingType" }
+                        type : { $push : "$meetingType" },
+                        specialInterest: { $push : {$concat: ["$meetingType", " - ", '$specialInterest']}},
                   }
                  },
                  { $group : { _id :{
                     address : "$_id.address",
                     latLong : '$_id.latLong',
-                    wheelchairAccess : '$_id.wheelchairAccess'
+                    wheelchairAccess : '$_id.wheelchairAccess',
                  },
                     groups : {
-                        $push : { group: "$_id.meetingName", meetingDetails : "$_id.meetingDetails", day : "$day", time : "$time", type : '$type'},
+                        $push : { group: "$_id.meetingName", meetingDetails : "$_id.meetingDetails", day : "$day", time : "$time", type : '$type', specialInterest: '$specialInterest'},
                     }
                  }
                  },

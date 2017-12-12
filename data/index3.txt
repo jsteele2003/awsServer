@@ -7,9 +7,9 @@
             contentHolder = contentHolder + '<h2>' + location._id.address.substr(0, location._id.address.indexOf(',')) + '</h2>';
             for (var i = 0; i < location.groups.length; i++) {
                 contentHolder = contentHolder + '<h1 id="firstHeading" class="firstHeading">';
-                contentHolder = contentHolder + location.groups[i].group;
+                contentHolder = contentHolder + location.groups[i].group + "</h1>";
                 if(location.groups[i].meetingDetails){
-                    contentHolder = contentHolder + " : " + location.groups[i].meetingDetails + "</h1>";
+                    contentHolder = contentHolder + " - " + location.groups[i].meetingDetails;
                 } else {
                     countentHolder = contentHolder + "</h1>";
                 }
@@ -19,8 +19,9 @@
                 
                 for (var j = 0; j < location.groups[i].day.length; j++) {
                     var type = "";
+                    var specialInterest = location.groups[i].specialInterest[j];
                     var day = location.groups[i].day[j];
-    
+                    
                     if (location.groups[i].type[j] == "BB") {
                         type = "Big Book ";
                     }
@@ -44,6 +45,9 @@
                     }
                     else {
                         type = "";
+                    }
+                    if(specialInterest != null){
+                       type = type + "(" + specialInterest.substr(specialInterest.indexOf('-') + 2, specialInterest.length -1 ) + ")"; 
                     }
                     if(!dayArray.includes(day)){
                         meetingDays[day] = "<h4>" + location.groups[i].day[j] + "</h4>" + location.groups[i].time[j] + " " + type;
