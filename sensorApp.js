@@ -1,5 +1,6 @@
 var express = require('express'),
 app = express(), assert = require('assert');
+var moment = require('moment-timezone');
 const { Pool } = require('pg');
 var fs = require('fs');
 
@@ -15,8 +16,8 @@ db_credentials.port = 5432;
 var collName = 'meetings';
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.cluster;
-console.log(url);
-
+console.log(moment.tz(new Date(), "America/New_York").days());
+console.log(moment.tz(new Date(), "America/New_York").hours())
 var map1 = fs.readFileSync("./data/index1.txt");
 var map3 = fs.readFileSync("./data/index3.txt");
 
@@ -65,12 +66,24 @@ app.get('/aa', function(req, res) {
         if (today == 6) {tomorrow = 0;}
         else {tomorrow = today + 1}
         var hour = dateTimeNow.getHours();
+        var day  = moment.tz(new Date(), "America/New_York").days();
+        var hour = moment.tz(new Date(), "America/New_York").hours();
 
         var collection = db.collection(collName);
         console.log(collection);
     
         collection.aggregate([ // start of aggregation pipeline
             // match by day and time
+            { $match : 
+                { $or : [
+                    { $and: [
+                        { dayInt : day } , { timeInt : { $gte: hour } }
+                    ]},
+                    { $and: [
+                        { dayInt : (day + 1) % 7 } , { timeInt : { $lte: (hour+24) % 24 } }
+                    ]}
+                ]}
+            },
             {  $group : { _id :{
                           address : "$address",
                           latLong : "$latLong",
