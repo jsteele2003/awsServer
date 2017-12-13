@@ -58,13 +58,7 @@ app.get('/aa', function(req, res) {
         assert.equal(null, err);
         console.log("Connected successfully to server");
         const db = database.db('joe');
-        console.log(collName);
     
-        var dateTimeNow = new Date();
-        var today = dateTimeNow.getDay();
-        var tomorrow;
-        if (today == 6) {tomorrow = 0;}
-        else {tomorrow = today + 1}
         var hour = dateTimeNow.getHours();
         var day  = moment.tz(new Date(), "America/New_York").days();
         var hour = moment.tz(new Date(), "America/New_York").hours();
@@ -72,7 +66,7 @@ app.get('/aa', function(req, res) {
         var collection = db.collection(collName);
         console.log(collection);
     
-        collection.aggregate([ // start of aggregation pipeline
+        collection.aggregate([
             // match by day and time
             { $match : 
                 { $or : [
