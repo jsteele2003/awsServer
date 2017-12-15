@@ -66,18 +66,16 @@ app.get('/aa', function(req, res) {
     
         collection.aggregate([
             
-            
-            // match by day and time
-            // { $match : 
-            //     { $or : [
-            //         { $and: [
-            //             { dayInt : day } , { timeInt : { $gte: hour } }
-            //         ]},
-            //         { $and: [
-            //             { dayInt : (day + 1) % 7 } , { timeInt : { $lte: (hour+24) % 24 } }
-            //         ]}
-            //     ]}
-            // },
+            { $match : 
+                { $or : [
+                    { $and: [
+                        { dayInt : day } , { timeInt : { $gte: hour } }
+                    ]},
+                    { $and: [
+                        { dayInt : (day + 1) % 7 } , { timeInt : { $lte: (hour+24) % 24 } }
+                    ]}
+                ]}
+            },
             {  $group : { _id :{
                           address : "$address",
                           latLong : "$latLong",
