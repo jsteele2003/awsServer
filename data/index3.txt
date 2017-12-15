@@ -15,7 +15,7 @@
                 }
                 
                 var dayArray = [];
-                var meetingDays = {}
+                var meetingDays = {};
                 
                 for (var j = 0; j < location.groups[i].day.length; j++) {
                     var type = "";

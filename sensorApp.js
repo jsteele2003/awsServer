@@ -59,25 +59,25 @@ app.get('/aa', function(req, res) {
         console.log("Connected successfully to server");
         const db = database.db('joe');
     
-        var hour = dateTimeNow.getHours();
         var day  = moment.tz(new Date(), "America/New_York").days();
         var hour = moment.tz(new Date(), "America/New_York").hours();
 
         var collection = db.collection(collName);
-        console.log(collection);
     
         collection.aggregate([
+            
+            
             // match by day and time
-            { $match : 
-                { $or : [
-                    { $and: [
-                        { dayInt : day } , { timeInt : { $gte: hour } }
-                    ]},
-                    { $and: [
-                        { dayInt : (day + 1) % 7 } , { timeInt : { $lte: (hour+24) % 24 } }
-                    ]}
-                ]}
-            },
+            // { $match : 
+            //     { $or : [
+            //         { $and: [
+            //             { dayInt : day } , { timeInt : { $gte: hour } }
+            //         ]},
+            //         { $and: [
+            //             { dayInt : (day + 1) % 7 } , { timeInt : { $lte: (hour+24) % 24 } }
+            //         ]}
+            //     ]}
+            // },
             {  $group : { _id :{
                           address : "$address",
                           latLong : "$latLong",
